@@ -23,11 +23,11 @@
 /* ==========================================================================
    2. BASE & RESET
    ========================================================================== */
-
-html {
+   html {
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
+    width: 100%; /* Verhindert das Rausragen */
+    /* scrollbar-gutter wurde hier absichtlich entfernt! */
 }
 
 /* Page Layout: Footer bleibt unten, Grundeinstellungen */
@@ -42,6 +42,10 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    
+    /* WICHTIG FÜR HANDYS: Doppelte Absicherung gegen horizontales Scrollen */
+    overflow-x: hidden; 
+    width: 100%;
 }
 
 
@@ -235,17 +239,6 @@ p,
     text-align: center;
 }
 
-.hero-animation {
-    width: 100%;
-    /* Nutzt auf kleinen Bildschirmen den Platz */
-    max-width: 600px;
-    /* Wird auf dem Desktop nicht riesig */
-    height: auto;
-    /* Verhindert Verzerrung */
-    margin: 2rem auto 0 auto;
-    /* Zentriert das Element */
-}
-
 /* Hero Video-Text-Side-By-Side */
 .hero-vertical-layout {
     min-height: 100vh;
@@ -265,41 +258,43 @@ p,
 }
 
 .hero-animation {
-    width: 100%;       /* Nutzt auf dem Handy die volle Breite des Grids */
-    max-width: 100%;   /* Verhindert das Rausragen */
-    height: auto;      /* Behält das richtige Seitenverhältnis bei */
-    background-color: #FCF5EE; /* Doppelte Absicherung für den transparenten Look */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto 0 auto;
+    background-color: #FCF5EE;
 }
 
 .slide-in-right-delayed {
     padding-bottom: 20px;
-    /* Richtet den Block optisch an der Videounterkante aus */
 }
 
-@media (max-width: 767px) {
-    /* ... deine bisherigen Handy-Styles (Bento etc.) ... */
+/* Tablet Optimierung */
+@media (max-width: 991px) {
+    .hero-video-contain {
+        max-height: 45vh;
+        margin-bottom: 2rem;
+    }
+    .slide-in-right-delayed {
+        padding-bottom: 0;
+    }
+}
 
+/* Handy Optimierung */
+@media (max-width: 767px) {
     .hero-vertical-layout .container {
         padding-left: 15px;
         padding-right: 15px;
-        overflow: hidden; /* Schneidet versehentliche Überhänge radikal ab */
+        overflow: hidden;
     }
-
     .hero-video-contain {
-        max-height: 40vh; /* Macht das Video auf dem Handy-Bildschirm etwas kompakter */
+        max-height: 40vh;
         margin-bottom: 1rem;
     }
-    
     .video-hero-wrapper-tight {
         width: 100%;
     }
 }
-
-    .slide-in-right-delayed {
-        padding-bottom: 0;
-    }
-
-
 
 /* ==========================================================================
    6. COMPONENTS (Cards, Badges, Carousel)
@@ -589,23 +584,12 @@ p,
 }
 
 /* Bento Responsive (Tablet & Handy) */
-@media (max-width: 991px) {
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 250px;
-        gap: 1rem;
-    }
-
-    .bento-wide {
-        grid-column: span 2;
-    }
-}
-
 @media (max-width: 767px) {
     .bento-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
         gap: 1.5rem;
+        width: 100%; /* Sicherheit, dass das Grid im Container bleibt */
     }
 
     .bento-large,
@@ -616,43 +600,39 @@ p,
     }
 
     .bento-item {
-        height: auto;
-        /* ÄNDERUNG: Erlaubt der Box mit dem Inhalt zu wachsen */
-        min-height: 350px;
+        height: auto !important;
+        min-height: auto !important;
     }
 
     .bento-item .project-card {
-        height: 100%;
+        height: auto; /* Auf Handys darf die Karte so hoch werden wie sie muss */
         display: flex;
         flex-direction: column;
     }
 
     .bento-item .card-image-wrapper {
-        padding-top: 56.25% !important;
-        /* ÄNDERUNG: Ein festes 16:9 Seitenverhältnis für Handys */
+        padding-top: 0 !important;
+        height: 250px !important; /* Eine schöne, feste Höhe für die Bilder auf dem Handy */
         position: relative;
         width: 100%;
-        height: 0;
     }
 
     .bento-item .card-body {
-        flex: 1 !important;
-        /* Gibt dem Text genug Platz, falls er umbricht */
+        flex: none !important;
+        height: auto !important;
+        padding: 15px 15px 20px 15px !important; /* Mehr Platz für den Text */
+    }
+
+    .bento-item .card-text {
+        white-space: normal; /* Erlaubt dem Text auf Handys umzubrechen, statt aus der Box zu schieben */
+        overflow: visible;
     }
 
     .bento-pattern {
-        height: 200px !important;
-        /* Die Doodle-Boxen schrumpfen auf eine schöne Höhe */
+        height: 150px !important; /* Musterboxen werden auf dem Handy etwas schmaler */
         background-size: cover;
-        /* Auf dem Handy deckend, da sonst abgeschnitten */
     }
 }
-
-.bento-doodle {
-    height: 200px !important;
-    min-height: 200px;
-}
-
 
 
 /* ==========================================================================
