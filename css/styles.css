@@ -236,9 +236,14 @@ p,
 }
 
 .hero-animation {
-    width: 60%;
-    max-width: 60%;
-    margin-top: 2rem;
+    width: 100%;
+    /* Nutzt auf kleinen Bildschirmen den Platz */
+    max-width: 600px;
+    /* Wird auf dem Desktop nicht riesig */
+    height: auto;
+    /* Verhindert Verzerrung */
+    margin: 2rem auto 0 auto;
+    /* Zentriert das Element */
 }
 
 /* Hero Video-Text-Side-By-Side */
@@ -256,6 +261,14 @@ p,
     object-fit: contain;
     border-radius: 20px;
     display: block;
+    background-color: #FCF5EE;
+}
+
+.hero-animation {
+    width: 100%;       /* Nutzt auf dem Handy die volle Breite des Grids */
+    max-width: 100%;   /* Verhindert das Rausragen */
+    height: auto;      /* Behält das richtige Seitenverhältnis bei */
+    background-color: #FCF5EE; /* Doppelte Absicherung für den transparenten Look */
 }
 
 .slide-in-right-delayed {
@@ -263,16 +276,29 @@ p,
     /* Richtet den Block optisch an der Videounterkante aus */
 }
 
-@media (max-width: 991px) {
-    .hero-video-contain {
-        max-height: 45vh;
-        margin-bottom: 2rem;
+@media (max-width: 767px) {
+    /* ... deine bisherigen Handy-Styles (Bento etc.) ... */
+
+    .hero-vertical-layout .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        overflow: hidden; /* Schneidet versehentliche Überhänge radikal ab */
     }
+
+    .hero-video-contain {
+        max-height: 40vh; /* Macht das Video auf dem Handy-Bildschirm etwas kompakter */
+        margin-bottom: 1rem;
+    }
+    
+    .video-hero-wrapper-tight {
+        width: 100%;
+    }
+}
 
     .slide-in-right-delayed {
         padding-bottom: 0;
     }
-}
+
 
 
 /* ==========================================================================
@@ -423,10 +449,10 @@ p,
 }
 
 /* Carousel & Side Images Mobile Optimierung */
-@media (max-width: 991.98px)
-{
+@media (max-width: 991.98px) {
     .col-lg-5 .carousel-fixed-height {
-        height: auto !important;;
+        height: auto !important;
+        ;
     }
 
     .process-side-img {
@@ -531,29 +557,35 @@ p,
 /* Bento Pattern Boxen (ersetzt die Doodle Boxen) */
 .bento-pattern {
     background-color: transparent;
-    /* Dein neues, großes Bild */
-    background-image: url('../images/doodlesHUGE.png');
-    
-    /* FIXIERT das Bild am Viewport (das Fenster-Gefühl) */
-    background-attachment: fixed;
-    
-    /* SORGT DAFÜR, dass das Bild den kompletten Hintergrund ausfüllt */
-    background-size: cover; 
-    
-    /* KEINE WIEDERHOLUNG */
-    background-repeat: no-repeat;
-    
-    /* Positionierung */
-    background-position: center center;
+    background-image: url('../images/doodlesLines.png');
+    background-attachment: scroll;
 
+    background-size: 800px auto;
+
+    background-repeat: no-repeat;
     border-radius: 12px;
     border: none !important;
 }
 
-/* Pixel-Art Schärfe-Einstellungen */ 
+/* 3. Jede Box zeigt nun einen anderen Ausschnitt, passend zu ihrer Position */
+.box-top {
+    background-position: top center;
+}
+
+.box-middle {
+    background-position: center center;
+}
+
+.box-bottom {
+    background-position: bottom center;
+}
+
+/* Pixel-Art Schärfe-Einstellungen */
 .pixel-art-img {
-    image-rendering: pixelated;     /* Scharfe Kanten für Chrome, Edge, Safari */
-    image-rendering: crisp-edges;    /* Scharfe Kanten für Firefox */
+    image-rendering: pixelated;
+    /* Scharfe Kanten für Chrome, Edge, Safari */
+    image-rendering: crisp-edges;
+    /* Scharfe Kanten für Firefox */
 }
 
 /* Bento Responsive (Tablet & Handy) */
@@ -584,7 +616,9 @@ p,
     }
 
     .bento-item {
-        height: 400px;
+        height: auto;
+        /* ÄNDERUNG: Erlaubt der Box mit dem Inhalt zu wachsen */
+        min-height: 350px;
     }
 
     .bento-item .project-card {
@@ -594,20 +628,31 @@ p,
     }
 
     .bento-item .card-image-wrapper {
-        flex: 1;
-        min-height: 325px;
+        padding-top: 56.25% !important;
+        /* ÄNDERUNG: Ein festes 16:9 Seitenverhältnis für Handys */
         position: relative;
+        width: 100%;
+        height: 0;
     }
 
     .bento-item .card-body {
-        flex: 0 0 75px !important;
+        flex: 1 !important;
+        /* Gibt dem Text genug Platz, falls er umbricht */
     }
 
-    .bento-doodle {
+    .bento-pattern {
         height: 200px !important;
-        min-height: 200px;
+        /* Die Doodle-Boxen schrumpfen auf eine schöne Höhe */
+        background-size: cover;
+        /* Auf dem Handy deckend, da sonst abgeschnitten */
     }
 }
+
+.bento-doodle {
+    height: 200px !important;
+    min-height: 200px;
+}
+
 
 
 /* ==========================================================================
