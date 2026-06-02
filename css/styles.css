@@ -204,7 +204,6 @@ p, .nav-link {
 
 .hero-animation {
     width: 100%;
-    max-width: 600px;
     height: auto;
     margin: 2rem auto 0 auto;
     background-color: #FCF5EE;
@@ -593,8 +592,23 @@ p, .nav-link {
 
 /* --- SMARTPHONES (max-width: 767px) --- */
 @media (max-width: 767px) {
-    .row { margin-left: 0 !important; margin-right: 0 !important; }
-    .container, .container-fluid { max-width: 100vw !important; padding-left: 15px !important; padding-right: 15px !important; }
+    
+    /* Setzt den Spaltenabstand (Gutter) global auf Handys runter, 
+       sodass der Text automatisch viel mehr Platz nach außen hat */
+    .row { 
+        --bs-gutter-x: 1rem; 
+        margin-left: calc(-0.5 * var(--bs-gutter-x));
+        margin-right: calc(-0.5 * var(--bs-gutter-x));
+    }
+    
+    /* Erhöht die Spezifität durch das "body", um den Rand des Containers 
+       ohne !important von 15px auf knackige 12px zu verringern */
+    body .container, 
+    body .container-fluid { 
+        max-width: 100vw; 
+        padding-left: 12px; 
+        padding-right: 12px; 
+    }
 
     .hero-vertical-layout .container { overflow: hidden; }
     .hero-video-contain { max-height: 40vh; margin-bottom: 1rem; }
