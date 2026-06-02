@@ -6,7 +6,7 @@
    1. SCHRIFTEN & UTILITIES
    ========================================================================== */
 
-@font-face {
+   @font-face {
     font-family: 'Inter';
     src: url("../fonts/Inter/Inter-VariableFont_opsz\,wght.ttf");
     font-display: swap;
@@ -44,7 +44,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Schutz vor seitlichem Scrollen auf Handys */
+    overflow-x: hidden;
     width: 100%;
 }
 
@@ -53,7 +53,6 @@ body {
    3. TYPOGRAFIE
    ========================================================================== */
 
-/* Überschriften im Display- & Hero-Bereich */
 h1, h2, .display-3, .display-4, .hero-title,
 .about-hero h1, .contact-hero h1, .projects-header h1 {
     font-family: 'Super Fashion', sans-serif;
@@ -74,14 +73,12 @@ h1, h2, .display-3, .display-4, .hero-title,
     margin-top: 1rem;
 }
 
-/* Zwischenüberschriften */
 h3, h4, .card-title {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     margin-top: 1.5rem;
 }
 
-/* Fließtexte & Beschreibungen */
 p, .nav-link {
     font-weight: 500;
     line-height: 1.6;
@@ -133,7 +130,6 @@ p, .nav-link {
     transition: opacity 0.3s ease;
 }
 
-/* Hover-Underline-Effekt */
 .navbar-nav .nav-link::after {
     content: '';
     position: absolute;
@@ -208,6 +204,7 @@ p, .nav-link {
 
 .hero-animation {
     width: 100%;
+    max-width: 600px;
     height: auto;
     margin: 2rem auto 0 auto;
     background-color: #FCF5EE;
@@ -219,10 +216,10 @@ p, .nav-link {
 
 
 /* ==========================================================================
-   6. KOMPONENTEN (CARDS, BADGES, CAROUSEL)
+   6. KOMPONENTEN & UNIFORMES PROJEKT-GALERIE-SYSTEM
    ========================================================================== */
 
-/* Projekt-Karten */
+/* Projekt-Karten (Übersicht) */
 .project-card {
     height: 100%;
     display: flex;
@@ -250,17 +247,13 @@ p, .nav-link {
 
 .card-image-wrapper img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     transition: opacity 0.5s ease-in-out;
 }
 
 .image-final { z-index: 2; opacity: 1; }
 .image-sketch { z-index: 1; }
-
 .project-card:hover .image-final { opacity: 0; }
 
 .stretched-link::after {
@@ -286,32 +279,48 @@ p, .nav-link {
 .tool-badge { background-color: #CEBAD1; color: #290700; }
 .study-badge { background-color: #290700; color: #FCF5EE; }
 
-/* Kompaktes Projekt-Layout & Bildergalerien */
+/* --- DAS UNUMSTÖSSLICHE PROJEKT-GALERIE-SYSTEM (550px Desktop) --- */
 .project-detail-layout {
     background-color: #FCF5EE;
     min-height: 100vh;
 }
 
-.video-container-compact {
-    max-width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+@media (min-width: 992px) {
+    .detail-gallery-row {
+        height: 550px !important;
+    }
+    .detail-gallery-row .col-carousel,
+    .detail-gallery-row .col-images {
+        height: 100% !important;
+    }
+    .detail-gallery-container {
+        height: 100% !important;
+        width: 100%;
+    }
+    .side-image-stack {
+        display: flex;
+        flex-direction: column;
+        height: 100% !important;
+    }
+    .side-image-stack .process-side-img {
+        flex: 1 1 0%;
+        height: 0; /* Erzwingt absolut perfektes 50/50-Splitting */
+    }
 }
 
-.process-side-img {
-    transition: transform 0.3s ease;
-}
-
+/* Generelle Medien-Abdeckung innerhalb der Galerie */
+.detail-gallery-container video,
+.detail-gallery-container .carousel,
+.detail-gallery-container .carousel-inner,
+.detail-gallery-container .carousel-item,
+.detail-gallery-container .carousel-item img,
 .process-side-img img {
-    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
-/* Karussell (Slider) */
-.carousel-fixed-height {
-    height: 550px;
-}
-
+/* Karussell-Spezifika */
 .carousel-indicators [data-bs-target] {
     width: 10px;
     height: 10px;
@@ -323,10 +332,21 @@ p, .nav-link {
 
 .carousel-control-prev, .carousel-control-next {
     width: 10%;
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    opacity: 1;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.6)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.8));
 }
 
 #designCarousel .carousel-inner {
-    height: 100%;
     background-image: url("../images/readingBackground.png");
     background-size: cover;
     background-position: center;
@@ -334,14 +354,12 @@ p, .nav-link {
     background-color: transparent;
 }
 
-.carousel-item img {
-    height: 100% !important;
-    object-fit: cover;
-}
-
 #carouselTextDisplay {
     transition: opacity 0.3s ease-in-out;
     min-height: 80px;
+    color: #290700;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 
@@ -407,12 +425,10 @@ p, .nav-link {
     object-fit: cover;
 }
 
-/* Bento-Kartengrößen */
 .bento-large { grid-column: span 2; grid-row: span 2; }
 .bento-wide  { grid-column: span 2; grid-row: span 1; }
 .bento-tall  { grid-column: span 1; grid-row: span 2; }
 
-/* Bento Pattern / Doodles */
 .bento-pattern {
     background-color: transparent;
     background-image: url('../images/doodlesLines.png');
@@ -556,51 +572,44 @@ p, .nav-link {
 
 /* --- TABLETS & KLEINE BILDSCHIRME (max-width: 991px) --- */
 @media (max-width: 991px) {
-    /* Navbar auf Mobilgeräten */
     .navbar-toggler { border: none; }
     .navbar-toggler:focus { box-shadow: none; }
     .navbar-nav { margin-top: 10px; }
     .navbar-nav .nav-link { text-align: left; }
     .navbar-nav .nav-link::after { left: 0; transform: none; }
 
-    /* Hero-Layouts */
     .hero-video-contain { max-height: 45vh; margin-bottom: 2rem; }
     .slide-in-right-delayed { padding-bottom: 0; }
 
-    /* Karussell & Detailbilder */
-    .col-lg-5 .carousel-fixed-height { height: auto !important; }
-    .process-side-img { height: 250px !important; width: 100%; }
-    #designCarousel { height: 350px !important; margin-bottom: 10px; }
+    /* Responsiver Reset für das Galerie-System */
+    .detail-gallery-row { height: auto !important; }
+    .detail-gallery-container { height: 380px !important; }
+    .side-image-stack { display: flex; flex-direction: column; gap: 1.5rem !important; }
+    .process-side-img { height: 260px !important; width: 100%; }
 
-    /* Bento-Grid (Wechsel auf 2 Spalten) */
     .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 250px; gap: 1rem; }
     .bento-wide { grid-column: span 2; }
 }
 
 /* --- SMARTPHONES (max-width: 767px) --- */
 @media (max-width: 767px) {
-    /* Absicherung gegen horizontales Ausbrechen durch Bootstrap-Rows */
     .row { margin-left: 0 !important; margin-right: 0 !important; }
     .container, .container-fluid { max-width: 100vw !important; padding-left: 15px !important; padding-right: 15px !important; }
 
-    /* Hero-Video auf Handys */
     .hero-vertical-layout .container { overflow: hidden; }
     .hero-video-contain { max-height: 40vh; margin-bottom: 1rem; }
     .video-hero-wrapper-tight { width: 100%; }
 
-    /* Bento-Grid (Wechsel auf 1 Spalte) */
     .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1.5rem; width: 100%; }
     .bento-large, .bento-wide, .bento-tall { grid-column: span 1 !important; grid-row: auto !important; }
     .bento-item { height: auto !important; min-height: auto !important; }
     .bento-item .project-card { height: auto; }
     
-    /* Karten-Bilder & Texte flexibel machen */
     .bento-item .card-image-wrapper { padding-top: 0 !important; height: 250px !important; position: relative; width: 100%; }
     .bento-item .card-body { flex: none !important; height: auto !important; padding: 15px 15px 20px 15px !important; }
     .bento-item .card-text { white-space: normal; overflow: visible; }
     .bento-pattern { height: 150px !important; background-size: cover; }
     .bento-doodle { height: 200px !important; min-height: 200px; }
 
-    /* Textumbruch-Schutz für lange Wörter */
     p, h1, h2, h3, h4, h5, a, span { word-break: break-word; hyphens: auto; }
 }
