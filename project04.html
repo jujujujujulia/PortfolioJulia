@@ -83,9 +83,11 @@
                     <h3 class="mb-4 text-start">Designprozess & Ausschnitte</h3>
 
                     <!-- Das Bilder-Grid -->
-                    <div class="row g-4 detail-gallery-row align-items-stretch d-flex flex-column flex-lg-row">
-                        
-                        <div class="col-lg-7 col-carousel order-1">
+                    <!-- Das Bilder-Grid -->
+                    <div class="row g-4 detail-gallery-row align-items-stretch">
+
+                        <!-- Linke Spalte: Karussell -->
+                        <div class="col-lg-7 col-carousel">
                             <div id="designCarousel"
                                 class="carousel slide detail-gallery-container rounded-4 shadow-sm overflow-hidden"
                                 data-bs-ride="false">
@@ -132,16 +134,16 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 </button>
                             </div>
-                        </div>
 
-                        <div class="col-lg-7 order-2 mt-3 mt-lg-5">
-                            <div id="carouselTextDisplay" class="text-start" style="position: relative; z-index: 5;">
+                            <!-- TEXT NUR FÜR MOBILE (wird auf dem Laptop ausgeblendet durch d-lg-none) -->
+                            <div class="carousel-text-display text-start mt-4 d-lg-none" style="position: relative; z-index: 5;">
                                 <p><strong>Research</strong><br>Ausschnitt eines Questionnaires, welches zur
                                     Konkretisierung des Konzepts beitrug.</p>
                             </div>
                         </div>
 
-                        <div class="col-lg-5 col-images order-3">
+                        <!-- Rechte Spalte: Zwei Bilder -->
+                        <div class="col-lg-5 col-images">
                             <div class="side-image-stack gap-4">
                                 <div class="process-side-img rounded-4 shadow-sm overflow-hidden">
                                     <img src="images/luvbirdsProfil.png" alt="Profil">
@@ -151,18 +153,32 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-            <!-- Projekt-Navigation -->
-            <div class="row mt-3">
-                <div class="col-12 d-flex justify-content-between">
-                    <a href="project03.html" class="stamp-btn stamp-outline">← Vorheriges Projekt</a>
-                    <a href="project05.html" class="stamp-btn stamp-dark">Nächstes Projekt →</a>
+                    <!-- TEXT NUR FÜR LAPTOP/DESKTOP (wird auf dem Handy ausgeblendet durch d-none d-lg-block) -->
+                    <div class="row text-start d-none d-lg-block" style="margin-top: 3.5rem !important; position: relative; z-index: 5;">
+                        <div class="col-lg-7">
+                            <div class="carousel-text-display">
+                                <p><strong>Research</strong><br>Ausschnitt eines Questionnaires, welches zur
+                                    Konkretisierung des Konzepts beitrug.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projekt-Navigation -->
+                    <div class="row mt-3">
+                        <div class="col-12 d-flex justify-content-between">
+                            <a href="project03.html" class="stamp-btn stamp-outline">← Vorheriges Projekt</a>
+                            <a href="project05.html" class="stamp-btn stamp-dark">Nächstes Projekt →</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-        </div>
     </section>
+
+   
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -193,22 +209,26 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
+     <!-- Ersetze auch das JavaScript ganz unten am Ende der Datei mit diesem hier: -->
+     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const carousel = document.getElementById('designCarousel');
-            const textDisplay = document.getElementById('carouselTextDisplay');
+            // Findet jetzt beide Textboxen (Mobile & Desktop)
+            const textDisplays = document.querySelectorAll('.carousel-text-display');
 
             carousel.addEventListener('slide.bs.carousel', function () {
-                textDisplay.style.opacity = 0;
+                textDisplays.forEach(display => display.style.opacity = 0);
             });
 
             carousel.addEventListener('slid.bs.carousel', function (event) {
                 const activeItem = event.relatedTarget;
                 const newTextHtml = activeItem.querySelector('.slide-text').innerHTML;
-                textDisplay.innerHTML = newTextHtml;
-                textDisplay.style.opacity = 1;
+                
+                // Aktualisiert beide Textboxen gleichzeitig
+                textDisplays.forEach(display => {
+                    display.innerHTML = newTextHtml;
+                    display.style.opacity = 1;
+                });
             });
         });
     </script>
