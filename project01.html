@@ -9,6 +9,14 @@
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .detail-gallery-container .carousel-item img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,26 +101,49 @@
                             <div id="designCarousel"
                                 class="carousel slide detail-gallery-container rounded-4 shadow-sm overflow-hidden"
                                 data-bs-ride="false">
+                                
                                 <div class="carousel-indicators mb-3">
-                                    <button type="button" data-bs-target="#designCarousel" data-bs-slide-to="0"
-                                        class="active"></button>
-                                    <button type="button" data-bs-target="#designCarousel"
-                                        data-bs-slide-to="1"></button>
+                                    <button type="button" data-bs-target="#designCarousel" data-bs-slide-to="0" class="active"></button>
+                                    <button type="button" data-bs-target="#designCarousel" data-bs-slide-to="1"></button>
+                                    <button type="button" data-bs-target="#designCarousel" data-bs-slide-to="2"></button>
+                                    <button type="button" data-bs-target="#designCarousel" data-bs-slide-to="3"></button>
                                 </div>
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="images/shadowSketches.png" alt="Schatten">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <img src="images/shadowSketches.png" alt="Schatten">
+                                        </div>
                                         <div class="slide-text d-none">
                                             <p><strong>Schatten-Charakter</strong><br>Verzogene Proportionen, um
                                                 verzerrten Schattenwurf zu imitieren.</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="images/lightSketches.png" alt="Licht">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <img src="images/lightSketches.png" alt="Licht">
+                                        </div>
                                         <div class="slide-text d-none">
                                             <p><strong>Licht-Charakter</strong><br>Glühbirnenförmiger Körper als
                                                 Metapher für Licht.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="carousel-item">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <img src="images/animationStoryboard01.png" alt="Storyboard Teil 1">
+                                        </div>
+                                        <div class="slide-text d-none">
+                                            <p><strong>Storyboard – Szene 1-3</strong><br>Erste visuelle Skizzen zur Festlegung der Kameraeinstellungen und des Szenenablaufs.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <img src="images/animationStoryboard02.png" alt="Storyboard Teil 2">
+                                        </div>
+                                        <div class="slide-text d-none">
+                                            <p><strong>Storyboard – Klimax</strong><br>Detailliertere Keyframes zur Definition von Timing, Lichtübergängen und Easing.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -152,58 +183,83 @@
                 </div>
             </div>
 
-            <!-- Projekt-Navigation -->
-            <div class="row mt-4">
+            <hr style="border-top: 1px solid #290700; opacity: 0.3; margin-top: 2rem; margin-bottom: 1rem;">
+
+            <div class="row mt-0 mb-2 align-items-center g-5" style="margin-top: -1rem !important;">
+                
+                <div class="col-lg-6 text-start">
+                    <p>
+                        Die größte Herausforderung bei diesem Kurzfilm bestand darin, zwei völlig abstrakte physikalische Phänomene in lebendige Charaktere mit Gefühlen zu verwandeln. Während die ersten Charakter-Skizzen noch in Procreate entstanden, stand bei der Animation in Procreate Dreams das richtige Timing im Vordergrund.
+                    </p>
+                    <p>
+                        Besonders komplex war das Spiel mit den physikalischen Formen: Der Schatten-Charakter bricht bewusste anatomische Regeln und nutzt verzerrte Proportionen, um die Unberechenbarkeit eines echten Schattenwurfs visuell zu spiegeln. Licht hingegen wirkt weich, rund und bildet den mathematisch harmonischen Gegenpol.
+                    </p>
+                    <p>
+                        Durch das Zusammenspiel von Keyframing und Frame-by-Frame-Animation wird die emotionale Zerreißprobe der beiden Protagonisten spürbar, wenn ihre Welten aus den Fugen geraten. Dieses Projekt war ein fantastisches Learning für mich, um Bewegungskurven (Easing) und visuelle Metaphern noch tiefer im Interaction Design zu verankern.
+                    </p>
+                </div>
+
+                <div class="col-lg-6">
+                    <img src="images/animationTimeline.png" class="w-100 rounded-4 shadow-sm object-fit-cover" 
+                         alt="Einblick in die Animations-Timeline" style="max-height: 450px;">
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
                 <div class="col-12 d-flex justify-content-end">
                     <a href="project02.html" class="stamp-btn stamp-dark">Nächstes Projekt →</a>
                 </div>
             </div>
 
-            <!-- Footer -->
-            <footer class="site-footer">
-                <div class="container text-center">
-                    <div class="footer-logo-wrapper">
-                        <img src="images/logo.svg" class="footer-logo" alt="Logo">
-                    </div>
+        </div>
+    </section>
 
-                    <div class="footer-stamps justify-content-center">
-                        <a href="#" class="stamp-btn stamp-beige">E-Mail</a>
-                        <a href="#" class="stamp-btn stamp-dark">Instagram</a>
-                        <a href="#" class="stamp-btn stamp-outline">LinkedIn</a>
-                    </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container text-center">
+            <div class="footer-logo-wrapper">
+                <img src="images/logo.svg" class="footer-logo" alt="Logo">
+            </div>
 
-                    <div class="footer-mini-impressum">
-                        <p><strong>Impressum</strong></p>
-                        <p>Julia Konersmann • Grenzstraße 28 • 49565 Bramsche</p>
-                    </div>
+            <div class="footer-stamps justify-content-center">
+                <a href="#" class="stamp-btn stamp-beige">E-Mail</a>
+                <a href="#" class="stamp-btn stamp-dark">Instagram</a>
+                <a href="#" class="stamp-btn stamp-outline">LinkedIn</a>
+            </div>
 
-                    <div class="footer-copyright w-100">
-                        © 2026 Julia Konersmann • <a href="documents/datenschutzerklaerung.pdf" target="_blank"
-                            rel="noopener noreferrer">Datenschutzerklärung</a>
-                    </div>
-                </div>
-            </footer>
+            <div class="footer-mini-impressum">
+                <p><strong>Impressum</strong></p>
+                <p>Julia Konersmann • Grenzstraße 28 • 49565 Bramsche</p>
+            </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="footer-copyright w-100">
+                © 2026 Julia Konersmann • <a href="documents/datenschutzerklaerung.pdf" target="_blank"
+                    rel="noopener noreferrer">Datenschutzerklärung</a>
+            </div>
+        </div>
+    </footer>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const carousel = document.getElementById('designCarousel');
-                    const textDisplay = document.getElementById('carouselTextDisplay');
+    <!-- HIER KORRIGIERT: bootstrap.bundle.min.js wieder vollständig eingefügt -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-                    carousel.addEventListener('slide.bs.carousel', function () {
-                        textDisplay.style.opacity = 0;
-                    });
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.getElementById('designCarousel');
+            const textDisplay = document.getElementById('carouselTextDisplay');
 
-                    carousel.addEventListener('slid.bs.carousel', function (event) {
-                        const activeItem = event.relatedTarget;
-                        const newTextHtml = activeItem.querySelector('.slide-text').innerHTML;
-                        textDisplay.innerHTML = newTextHtml;
-                        textDisplay.style.opacity = 1;
-                    });
-                });
-            </script>
+            carousel.addEventListener('slide.bs.carousel', function () {
+                textDisplay.style.opacity = 0;
+            });
 
+            carousel.addEventListener('slid.bs.carousel', function (event) {
+                const activeItem = event.relatedTarget;
+                const newTextHtml = activeItem.querySelector('.slide-text').innerHTML;
+                textDisplay.innerHTML = newTextHtml;
+                textDisplay.style.opacity = 1;
+            });
+        });
+    </script>
 </body>
 
 </html>

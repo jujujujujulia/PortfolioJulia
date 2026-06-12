@@ -344,11 +344,15 @@ p, .nav-link {
 }
 
 #designCarousel .carousel-inner {
+    background-image: none;
+    background-color: transparent;
+}
+
+#designCarousel.bookivation-bg .carousel-inner {
     background-image: url("../images/readingBackground.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: transparent;
 }
 
 #carouselTextDisplay {
