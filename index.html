@@ -50,10 +50,22 @@
             <div class="row align-items-end g-5">
 
                 <div class="col-lg-8">
-                    <div class="video-hero-wrapper-tight">
-                        <video autoplay loop muted playsinline class="hero-video-contain hero-animation">
+                    <div class="video-hero-wrapper-tight position-relative">
+                        
+                        <div id="video-fallback-box" class="w-100 flex-column align-items-center justify-content-center text-center p-4 rounded-4" 
+                             style="display: none; background: rgba(41, 7, 0, 0.03); border: 2px dashed rgba(41, 7, 0, 0.1); min-height: 400px;">
+                            <div class="mb-2" style="font-size: 2rem;">✨</div>
+                            <h5 class="fw-bold mb-2" style="color: #290700;">Hinweis zur Animation</h5>
+                            <p class="small mb-0" style="max-width: 450px; color: #290700; opacity: 0.8; line-height: 1.5;">
+                                Das interaktive Video kann auf diesem Gerät leider nicht geladen werden. 
+                                Das liegt meistens an einer Autoplay-Blockierung des Browsers oder an fehlenden System-Codecs (z. B. bei Windows 10 N-Editionen).
+                            </p>
+                        </div>
+                
+                        <video id="hero-animation-video" autoplay loop muted playsinline class="hero-video-contain hero-animation">
                             <source src="images/desk.mp4" type="video/mp4">
                         </video>
+                
                     </div>
                 </div>
 
@@ -108,6 +120,30 @@
 
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('hero-animation-video');
+            const fallbackBox = document.getElementById('video-fallback-box');
+    
+            function activateFallback() {
+                // Erst das Video komplett wegschalten, damit es keinen Platz mehr wegnimmt
+                video.style.display = 'none';
+                // Dann die Infobox sauber als Flexbox einblenden
+                fallbackBox.style.setProperty('display', 'flex', 'important');
+            }
+    
+            // Falls das System direkt einen Fehler meldet
+            video.addEventListener('error', activateFallback);
+    
+            // 2-Sekunden-Sicherheitscheck für eingefrorene/blockierte Videos
+            setTimeout(function () {
+                if (video.paused || video.currentTime === 0 || video.readyState < 3) {
+                    activateFallback();
+                }
+            }, 2000);
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
